@@ -1,0 +1,47 @@
+<div class="wrapper sticky">
+  <mat-toolbar color="primary">
+    <div class="flex-row">
+      <span class="login-title">Login</span>
+      <span class="spacer"></span>
+      <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+</div>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="loginForm" class="forgotPassword-form">
+    <div class="flex-column">
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
+          <span *ngIf="loginForm.controls['email'].errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="loginForm.controls['email'].errors?.['pattern']">This field is invalid.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="flex-item">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="passwordVisible ? 'text' : 'password'" formControlName="password" required>
+        <button type="button" mat-icon-button matSuffix (click)="passwordVisible = !passwordVisible"
+          [attr.aria-label]="passwordVisible ? 'Hide password' : 'Show password'" [attr.aria-pressed]="passwordVisible">
+          <mat-icon>{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
+          <span *ngIf="loginForm.controls['password'].errors?.['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+    [disabled]="!(loginForm.valid && loginForm.dirty)">
+    <mat-icon>login</mat-icon> Login
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

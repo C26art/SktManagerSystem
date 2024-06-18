@@ -1,0 +1,48 @@
+.float-right {
+  float: right;
+}
+
+mat-card {
+  padding: 20px;
+}
+
+
+table {
+  width: 100%;
+}
+
+
+::ng-deep .highlight {
+  color: white;
+  background: #673ab7;
+}
+
+
+.header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-button {
+  margin-left: auto;
+}
+
+.add-button {
+  background-color: #673ab7;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  &:hover {
+    background-color: #5a2d91;
+  }
+}
+
+.responsive_table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

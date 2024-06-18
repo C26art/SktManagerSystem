@@ -1,0 +1,91 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7b1fa2;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mat-toolbar {
+  margin: 0;
+  width: 100%;
+  background-color: #7b1fa2;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.flex {
+  flex: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.roxo{
+  color: white;
+}
+
+span {
+  color: #fff;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-field {
+  flex: 1;
+}
+
+button{
+  border-radius: 6px;
+}
+
+.green-snackbar {
+  background-color: green !important;
+  color: black !important;
+}
+
+.black-snackbar {
+  background-color: black !important;
+  color: white !important;
+}
+
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+

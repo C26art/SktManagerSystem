@@ -1,0 +1,64 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { GlobalConstants } from '../shared/global-constants';
+import { UserService } from '../../../services/user.service';
+import { SnackbarService } from '../../../services/snackbar.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+  hide = true;
+  passwordVisible = false;
+  loginForm!: FormGroup;
+  responseMessage: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private snackBarService: SnackbarService,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    private ngxService: NgxUiLoaderService
+  ) { }
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: [null, [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]],
+      password: [null, [Validators.required]]
+    });
+  }
+
+  handleSubmit() {
+    if (this.loginForm.invalid) {
+      this.snackBarService.openSnackBar("Formulário inválido", GlobalConstants.error);
+      return;
+    }
+
+    this.ngxService.start();
+    let formData = this.loginForm.value;
+    let data = {
+      email: formData.email,
+      password: formData.password
+    };
+
+    this.userService.login(data).subscribe({
+      next: (response: any) => {
+        this.ngxService.stop();
+        this.dialogRef.close();
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/cafe/dashboard']);
+      },
+      error: (error) => {
+        this.ngxService.stop();
+        this.responseMessage = error.error?.message || GlobalConstants.genericError;
+        this.snackBarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+      }
+    });
+  }
+}

@@ -1,0 +1,51 @@
+<body>
+  <mat-card class="dashboard-title-card">
+    <b><span>Dashboard</span></b>
+  </mat-card>
+  <br>
+  <div class="mat-grid-list">
+    <mat-grid-list cols="3" rowHeight="1:1">
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Total Category:</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h1>{{data?.category}}</h1>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/cafe/category']">View Category</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Total Product:</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h1>{{data?.product}}</h1>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/cafe/product']">View Product</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>Total Bill:</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h1>{{data?.bill}}</h1>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/cafe/bill']">View Bill</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</body>

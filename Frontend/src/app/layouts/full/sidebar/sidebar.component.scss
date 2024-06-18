@@ -1,0 +1,39 @@
+$primary-color: #7b1fa2;
+$icon-color: white;
+
+.menu-item {
+  a.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    color: $primary-color;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: none;
+      color: brown;
+    }
+
+
+    .menu-icon {
+      color: $icon-color;
+      margin-right: 10px;
+    }
+
+    .menu-name {
+      padding: 0 5px;
+    }
+  }
+
+  &.selected {
+    background-color: darken($primary-color, 10%);
+    a.menu-link {
+      color: $icon-color;
+
+      .menu-name {
+        color: $icon-color;
+      }
+    }
+  }
+}
